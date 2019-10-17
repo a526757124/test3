@@ -5,9 +5,7 @@ import com.example.test3.mapper.UserMapper;
 import com.example.test3.model.User;
 import com.example.test3.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 
@@ -20,19 +18,25 @@ public class UserController {
 
     @Autowired
     private UserMapper userMapper;
-
+    /**
+     * 功能描述: user 测试接口
+     */
+    @RequestMapping(path="test",method = RequestMethod.GET)
+    public Object test(){
+        return "测试";
+    }
 
     /**
      * 功能描述: user 保存接口
      */
-    @GetMapping("add")
-    public Object add(){
+    @RequestMapping(path="add",method = RequestMethod.POST)
+    public Object add(@RequestBody User user){
 
-        User user = new User();
+        /*User user = new User();
         user.setAge(11);
         user.setCreateTime(new Date());
         user.setName("张三");
-        user.setPhone("1880177");
+        user.setPhone("1880177");*/
         int id = userService.add(user);
 
         return id;
@@ -45,7 +49,7 @@ public class UserController {
     @GetMapping("findAll")
     public Object findAll(){
 
-        return userMapper.getAll();
+        return userMapper.selectList(null);
     }
 
     /**
@@ -53,7 +57,7 @@ public class UserController {
      */
     @GetMapping("find_by_id")
     public Object findById(long id){
-        return userMapper.findById(id);
+        return userMapper.selectById(id);
     }
 
     /**
@@ -61,7 +65,7 @@ public class UserController {
      */
     @GetMapping("del_by_id")
     public Object delById(long id){
-        userMapper.delete(id);
+        userMapper.deleteById(id);
         return "";
     }
 
@@ -73,7 +77,7 @@ public class UserController {
         User user = new User();
         user.setName(name);
         user.setId(id);
-        userMapper.update(user);
+        userMapper.updateById(user);
         return "";
     }
 }

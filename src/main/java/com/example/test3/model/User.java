@@ -1,8 +1,11 @@
 package com.example.test3.model;
 
+import com.baomidou.mybatisplus.annotation.TableId;
+
 import java.util.Date;
 
 //用户实体
+@TableId(value : "id",)
 public class User {
 
     private int id;

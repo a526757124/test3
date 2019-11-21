@@ -1,13 +1,18 @@
 package com.example.test3.model;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.extension.activerecord.Model;
 
 import java.util.Date;
 
 //用户实体
-@TableId(value : "id",)
-public class User {
+@TableName(value = "User")//指定表名
+public class User extends Model<User> {
 
+    @TableId(value = "`id`",type = IdType.AUTO)//指定自增策略
     private int id;
 
     private String name;
@@ -16,6 +21,7 @@ public class User {
 
     private int age;
 
+    @TableField("CreateTime")
     private Date createTime;
 
     public int getId() {
@@ -56,5 +62,11 @@ public class User {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }

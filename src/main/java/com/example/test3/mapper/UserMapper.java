@@ -20,15 +20,15 @@ public interface UserMapper extends BaseMapper<User> {
 
     //column指数据库中的列，property是指实体的属性名，如果一致就不需要写
     @Select("SELECT * FROM user")
-    @Results({
+    /*@Results({
             @Result(column = "create_time",property = "createTime")
-    })
+    })*/
     List<User> getAll();
 
     @Select("SELECT * FROM user WHERE id = #{id}")
-    @Results({
+    /*@Results({
             @Result(column = "create_time",property = "createTime")
-    })
+    })*/
     User findById(Long id);
 
 
